@@ -17,11 +17,11 @@
 
 2. get a list of all repositories
 
-    curl -s https://git.proxmox.com/?a=project_index | awk {'print $1'} | sort
+`curl -s https://git.proxmox.com/?a=project_index | awk {'print $1'} | sort`
 
 3. create all repos via the github api
 
-    curl -u <user> https://api.github.com/user/repos -d '{ "name": "<reponame>", "description": "<description>" }
+`curl -u <user> https://api.github.com/user/repos -d '{ "name": "<reponame>", "description": "<description>" }`
 
 This is done locally, so passwords won't end up on the server.
 
@@ -51,7 +51,7 @@ Make sure these are properly named. (With just the repo name.)
 
 2. get list of all snapshot links, write to file 
 
-    grep snapshot <(while read LINE; do curl -s https://git.proxmox.com/?p=$LINE\;a=tree; done < <(curl -s https://git.proxmox.com/?a=project_index | awk {'print $1'} | sort) ) | sed -e 's,.*"/?p=,?p=,' -e 's/".*//'
+`grep snapshot <(while read LINE; do curl -s https://git.proxmox.com/?p=$LINE\;a=tree; done < <(curl -s https://git.proxmox.com/?a=project_index | awk {'print $1'} | sort) ) | sed -e 's,.*"/?p=,?p=,' -e 's/".*//'`
 
 Output: 
 
@@ -63,7 +63,7 @@ Output:
 
 3. get all current filenames from the Content-Disposition HTTP header, write list to file 'CURRENT'
 
-    curl -vsI 'https://git.proxmox.com/?p=aab.git;a=snapshot;h=HEAD;sf=tgz' |& grep ^Content-disposition | sed -e 's/.*filename="//' -e 's/"//'
+`curl -vsI 'https://git.proxmox.com/?p=aab.git;a=snapshot;h=HEAD;sf=tgz' |& grep ^Content-disposition | sed -e 's/.*filename="//' -e 's/"//'`
 
 Output:
 
