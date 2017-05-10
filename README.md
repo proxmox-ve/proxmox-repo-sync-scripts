@@ -13,7 +13,7 @@
 
 ## preparements
 
-1. check free disk space, should be minimum 3G at least, since the base checkout will be about almost 1,5G already
+1. check free disk space, should be minimum 3G at least, since the base checkout will be about almost 1.5G already
 
 2. get a list of all repositories
 
